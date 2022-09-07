@@ -22,6 +22,10 @@ function App() {
   const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
+    shuffleCards();
+  }, [])
+
+  useEffect(() => {
     if (choiceOne && choiceTwo) {
       compareCards();
     }
@@ -84,6 +88,9 @@ function App() {
       // reset cards and turns
       setCards(shuffledCards);
       setNumTurns(0);
+
+      setChoiceOne(null);
+      setChoiceTwo(null);
   }
 
   return (
@@ -100,6 +107,8 @@ function App() {
             disabled={disabled}/>
         ))}
       </div>
+
+      <p>Turns: {numTurns}</p>
     </div>
   );
 }
