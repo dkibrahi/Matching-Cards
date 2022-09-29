@@ -1,7 +1,10 @@
 // other
-import useSound from 'use-sound'
-import clickSound from '../resources/click.mp3'
-import deniedSound from '../resources/denied.mp3'
+import useSound from 'use-sound';
+
+// sounds 
+
+import clickSound from '../resources/click.mp3';
+import deniedSound from '../resources/denied.mp3';
 
 // styles
 import './Card.css';
@@ -12,7 +15,6 @@ export default function Card({ card, handleChoice, flipped, disabled }) {
 
     const handleClick = () => {
         if (!disabled) {
-            // console.log("NANI? Should be clicked");
             playClickSound();
             handleChoice(card);
         }

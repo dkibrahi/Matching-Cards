@@ -1,6 +1,10 @@
 // other
 import { useState, useEffect } from 'react';
 import { cardImages } from './external/CardImages';
+import useSound from 'use-sound';
+
+// sounds
+import buttonClickSound from './resources/buttonClick.mp3';
 
 // components
 import Card from './components/Card';
@@ -15,6 +19,8 @@ function App() {
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
   const [disabled, setDisabled] = useState(false); // prevent user from clicking too many cards
+
+  const [playBtnClickedSound] = useSound(buttonClickSound);
 
   useEffect(() => {
     shuffleCards(); // on page load
@@ -76,6 +82,8 @@ function App() {
 
  
   const shuffleCards = () => {
+    playBtnClickedSound();
+
     const shuffledCards = [...cardImages, ...cardImages] // two copies of each card
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random()}))
