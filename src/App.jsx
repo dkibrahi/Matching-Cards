@@ -1,28 +1,23 @@
+// other
 import { useState, useEffect } from 'react';
+import { cardImages } from './external/CardImages';
+
+// components
 import Card from './components/Card';
 
 // styles 
 import './App.css';
 
 
-const cardImages = [
-  {"src": "/img/helmet-1.png", matched: false},
-  {"src": "/img/potion-1.png", matched: false},
-  {"src": "/img/ring-1.png", matched: false},
-  {"src": "/img/scroll-1.png", matched: false},
-  {"src": "/img/shield-1.png", matched: false},
-  {"src": "/img/sword-1.png", matched: false}
-]
-
 function App() {
-  const [cards, setCards] = useState([]);
-  const [numTurns, setNumTurns] = useState(0);
+  const [cards, setCards] = useState([]); 
+  const [numTurns, setNumTurns] = useState(0); // display number of turns
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
-  const [disabled, setDisabled] = useState(false);
+  const [disabled, setDisabled] = useState(false); // prevent user from clicking too many cards
 
   useEffect(() => {
-    shuffleCards();
+    shuffleCards(); // on page load
   }, [])
 
   useEffect(() => {
@@ -31,7 +26,7 @@ function App() {
     }
   }, [choiceOne, choiceTwo]);
 
-  // handle a card choice
+
   const handleChoice = (card) => {
     if (choiceOne === null) {
       setChoiceOne(card);
@@ -42,17 +37,19 @@ function App() {
     }
   } 
 
-  // compare if user made right match
+
   const compareCards = () => {
     setDisabled(true); // disable any other cards from being clicked
 
+    // same card
     if (choiceOne.src === choiceTwo.src) {
       setCards((prevCards) => {
         return prevCards.map((card) => {
+          // update property of newly matched card
           if (card.src === choiceOne.src) {
-            return {...card, matched: true};
+            return {...card, matched: true}; 
           }
-
+          
           else {
             return card;
           }
@@ -63,15 +60,13 @@ function App() {
       resetTurn();
     }
 
+    // cards aren't the same
     else {
-      setTimeout(() => resetTurn(), 750);
+      setTimeout(() => resetTurn(), 1000);
     }
   }
 
-  console.log(cards);
-
-  // reset cards and increment turns
-
+  
   const resetTurn = () => {
     setChoiceOne(null);
     setChoiceTwo(null);
@@ -79,7 +74,7 @@ function App() {
     setDisabled(false);
   }
 
-  // shuffle the cards
+ 
   const shuffleCards = () => {
     const shuffledCards = [...cardImages, ...cardImages] // two copies of each card
       .sort(() => Math.random() - 0.5)
@@ -95,7 +90,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Magic Match</h1>
+      <h1>Card Matching</h1>
       <button onClick={shuffleCards}>New Game</button>
 
       <div className="card-grid">
