@@ -1,8 +1,8 @@
 export const cardImages = [
-  {"src": "/img/helmet-1.png", matched: false},
-  {"src": "/img/potion-1.png", matched: false},
-  {"src": "/img/ring-1.png", matched: false},
-  {"src": "/img/scroll-1.png", matched: false},
-  {"src": "/img/shield-1.png", matched: false},
-  {"src": "/img/sword-1.png", matched: false}
+  {"src": "/img/amazon.png", matched: false},
+  {"src": "/img/apple.png", matched: false},
+  {"src": "/img/microsoft.png", matched: false},
+  {"src": "/img/google.png", matched: false},
+  {"src": "/img/netflix.png", matched: false},
+  {"src": "/img/meta.png", matched: false}
 ]
