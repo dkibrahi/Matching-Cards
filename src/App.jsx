@@ -47,8 +47,13 @@ function App() {
   const compareCards = () => {
     setDisabled(true); // disable any other cards from being clicked
 
-    // same card
-    if (choiceOne.src === choiceTwo.src) {
+    // clicked on same exact card
+    if (choiceOne.id === choiceTwo.id) {
+      setChoiceTwo(null);
+      setDisabled(false);
+    }
+
+    else if (choiceOne.src === choiceTwo.src) {
       setCards((prevCards) => {
         return prevCards.map((card) => {
           // update property of newly matched card
